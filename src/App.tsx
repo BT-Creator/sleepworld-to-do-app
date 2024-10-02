@@ -1,8 +1,21 @@
+import { useState } from 'react'
 import './App.css'
 import ToDoListItem from './components/ToDoItem/ToDoItem'
 
+interface ToDo {
+  name: string
+  completed: boolean
+}
+
+
 function App() {
-  
+  const [toDos, setToDos] = useState<ToDo[]>([])
+  const [newTaskName, setNewTaskName] = useState<string>("")
+
+  function addTask(e:React.MouseEvent<HTMLInputElement, MouseEvent>) {
+    e.preventDefault()
+    setToDos([...toDos, {name: newTaskName, completed: false}])
+  }
   return (
     <>
     <header>
@@ -12,12 +25,13 @@ function App() {
       <section>
         <h2>Add a task</h2>
         <p>Add a task here to add it to the lis:</p>
-        <input type="text" placeholder="Task name" />
+        <input type="text" placeholder="Task name" onChange={(e) => setNewTaskName(e.target.value)} />
+        <input type="submit" value="Add task" onClick={(e) => addTask(e)}/>
       </section>
       <section>
         <h2>To-Do list</h2>
         <ul>
-          <ToDoListItem title="Buy milk" onToggle={(completed) => console.log(completed)} />
+          {toDos.map((toDo, index) => <ToDoListItem key={index} title={toDo.name} onToggle={(completed) => console.log(completed)} />)}
         </ul>
       </section>
       <section>
