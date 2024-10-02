@@ -2,6 +2,9 @@ import { useState } from 'react'
 import './App.css'
 import ToDoListItem from './components/ToDoItem/ToDoItem'
 
+/**
+ * TODO: Move task insertion to own component
+ */
 interface ToDo {
   name: string
   completed: boolean
