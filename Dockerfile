@@ -1,4 +1,4 @@
-FROM node:lts as build
+FROM node:lts AS build
 WORKDIR /app
 
 # Copy required configs
@@ -22,6 +22,9 @@ RUN npm install
 RUN npm run build
 
 # Build the production image
-FROM httpd:latest as production
-COPY --from=build /app/dist /usr/local/apache2/htdocs/
-EXPOSE 8080:80
+FROM busybox:latest AS production
+RUN adduser -D appuser
+USER appuser
+WORKDIR /home/appuser
+COPY --from=build /app/dist .
+CMD [ "busybox", "httpd", "-f", "-p", "8080" ]
