@@ -21,7 +21,7 @@ jobs:
             - name: Build the application
               run: npm run build
     lint-app:
-        name: Build application
+        name: Lint application
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code

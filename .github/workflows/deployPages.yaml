@@ -37,7 +37,7 @@ jobs:
               with:
                 path: ${{github.workspace}}/dist
     lint-app:
-        name: Build application
+        name: Lint application
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
