@@ -1,7 +1,9 @@
 header {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: center;
+    gap: var(--base-unit);
+    margin-bottom: calc(var(--base-unit)*2);
 }
 
 main {
@@ -27,6 +29,10 @@ ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+.error {
+    color: red;
 }
 
 @media(width>1200px) {

@@ -12,10 +12,16 @@ function App() {
   const [toDos, setToDos] = useState<ToDo[]>([])
   const [newToDoName, setToDoName] = useState<string>("")
   const [completedToDos, setCompletedToDos] = useState<ToDo[]>([])
+  const [error, setError] = useState<string>("")
 
   function addTask(e:React.MouseEvent<HTMLInputElement, MouseEvent>) {
     e.preventDefault()
-    setToDos([...toDos, {name: newToDoName, completed: false}])
+    if(newToDoName === '') {
+      setError('Please enter a task name')
+    } else {
+      setError("");
+      setToDos([...toDos, {name: newToDoName, completed: false}])
+    }
   }
 
   function moveToDoItem(index: number, isCompleted: boolean) {
@@ -36,6 +42,7 @@ function App() {
     <>
     <header>
       <h1>Sleepworld To-Do list</h1>
+      { error && <p className='error'>{error}</p>}
     </header>
     <main>
       <section className='add-task'>
