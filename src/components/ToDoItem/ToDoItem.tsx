@@ -7,17 +7,17 @@ interface ToDoItemProps {
 }
 
 export default function ToDoListItem({onToggle, title}: ToDoItemProps) {
-    const [completed, setCompleted] = useState(false)
+    const [progress, setProgress] = useState(false)
     
     return (
         <li>
             <label>
             <input
                 type="checkbox"
-                checked={completed}
+                checked={progress}
                 onChange={() => {
-                    setCompleted(!completed)
-                    onToggle(completed)
+                    setProgress(!progress)
+                    onToggle(progress)
                 }}
             />
                 <span>{title}</span>
