@@ -1,33 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import ToDoListItem from './assets/components/ToDoItem/ToDoItem'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <header>
+      <h1>Sleepworld To-Do list</h1>
+    </header>
+    <main>
+      <section>
+        <h2>Add a task</h2>
+        <p>Add a task here to add it to the lis:</p>
+        <input type="text" placeholder="Task name" />
+      </section>
+      <section>
+        <h2>To-Do list</h2>
+        <ul>
+          <ToDoListItem title="Buy milk" onToggle={(completed) => console.log(completed)} />
+        </ul>
+      </section>
+      <section>
+        <h2>Completed tasks</h2>
+        <ul>
+          <li>Get bread</li>
+        </ul>
+      </section>
+    </main>
     </>
   )
 }
