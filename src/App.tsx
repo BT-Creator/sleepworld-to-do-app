@@ -6,8 +6,8 @@ import ToDoListItem from './components/ToDoItem/ToDoItem'
  * TODO: Move task insertion to own component
  */
 interface ToDo {
-  name: string
-  completed: boolean
+  name: string;
+  completed: boolean;
 }
 
 
