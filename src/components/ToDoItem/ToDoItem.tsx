@@ -4,10 +4,11 @@ import "./ToDoItem.module.css"
 interface ToDoItemProps {
     onToggle: (completed: boolean) => void;
     title: string;
+    checked?: boolean;
 }
 
-export default function ToDoListItem({onToggle, title}: ToDoItemProps) {
-    const [progress, setProgress] = useState(false)
+export default function ToDoListItem({onToggle, title, checked=false}: ToDoItemProps) {
+    const [progress, setProgress] = useState(checked)
     
     return (
         <li>

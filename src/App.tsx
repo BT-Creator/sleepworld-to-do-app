@@ -2,9 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import ToDoListItem from './components/ToDoItem/ToDoItem'
 
-/**
- * TODO: Move task insertion to own component
- */
 interface ToDo {
   name: string;
   completed: boolean;
@@ -21,11 +18,19 @@ function App() {
     setToDos([...toDos, {name: newToDoName, completed: false}])
   }
 
-  function moveToDoItem(index: number) {
-    const currentToDos = toDos
-    const completedToDo = currentToDos.splice(index, 1);
-    setToDos([...toDos])
-    setCompletedToDos([...completedToDos, ...completedToDo])
+  function moveToDoItem(index: number, isCompleted: boolean) {
+    // Determine which array to move the item from
+    const targetState = isCompleted ? completedToDos : toDos
+    const targetToDo = targetState.splice(index, 1)[0]
+    targetToDo.completed = !targetToDo.completed
+
+    if(isCompleted) {
+      setCompletedToDos([...targetState]) 
+      setToDos([...toDos, targetToDo])
+    } else {
+      setToDos([...targetState])
+      setCompletedToDos([...completedToDos, targetToDo])
+    }
   }
   return (
     <>
@@ -42,13 +47,13 @@ function App() {
       <section>
         <h2>To-Do list</h2>
         <ul>
-          {toDos.map((toDo, index) => <ToDoListItem key={index} title={toDo.name} onToggle={() => moveToDoItem(index)} />)}
+          {toDos.map((toDo, index) => <ToDoListItem key={index} title={toDo.name} onToggle={() => moveToDoItem(index, toDo.completed)} />)}
         </ul>
       </section>
       <section>
         <h2>Completed tasks</h2>
         <ul>
-          {completedToDos.map((toDo, index) => <li key={index}>{toDo.name}</li>)}
+          {completedToDos.map((toDo, index) => <ToDoListItem key={index} title={toDo.name} checked={toDo.completed} onToggle={() => moveToDoItem(index, toDo.completed) }/>)}
         </ul>
       </section>
     </main>
