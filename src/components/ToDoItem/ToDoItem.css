@@ -1,0 +1,26 @@
+label {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: var(--base-unit);
+}
+
+label {
+    width: 100%;
+}
+
+span {
+    flex-grow: 1;
+}
+
+input[type="checkbox"] {
+    --checkbox-size: calc(var(--base-unit)*4);
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+}
+
+@media(width>1000px) {
+    input[type="checkbox"] {
+        --checkbox-size: calc(var(--base-unit)*3);
+    }
+}

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "./ToDoItem.module.css"
+import "./ToDoItem.css"
 
 interface ToDoItemProps {
     onToggle: (completed: boolean) => void;
